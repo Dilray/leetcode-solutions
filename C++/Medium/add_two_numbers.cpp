@@ -12,14 +12,13 @@ struct ListNode {
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
     ListNode* dummyHead = new ListNode(0); // Виртуальный узел для удобства
     ListNode* current = dummyHead; // Указатель для добавления новых узлов
-    bool flag = false;
-    uint8_t mod = 0;
 
     ListNode* current1 = l1;
     ListNode* current2 = l2;
 
-    while (current1 != nullptr || current2 != nullptr || mod != 0) {
-        uint8_t sum = mod; // Начинаем с остатка
+    bool flag = 0;
+    while (current1 != nullptr || current2 != nullptr || flag != 0) {
+        uint8_t sum = flag;
 
         if (current1 != nullptr) {
             sum += current1->val; // Добавляем значение из первого списка
@@ -31,8 +30,8 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
             current2 = current2->next; // Переходим к следующему узлу
         }
 
-        mod = sum / 10; // Вычисляем новый остаток
-        current->next = new ListNode(sum % 10); // Создаем новый узел с последней цифрой суммы
+        flag = sum > 9;
+        current->next = new ListNode((sum) % 10); // Создаем новый узел с последней цифрой суммы
         current = current->next; // Переходим к новому узлу
     }
 
