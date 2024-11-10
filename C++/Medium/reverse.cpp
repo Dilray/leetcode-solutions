@@ -11,3 +11,18 @@ int reverse(int x) {
 		return 0;
 	return res * (x > 0 ? 1 : -1);
 }
+
+//  Upgrade version
+int reverse(int x) {
+	int xx = abs(x);
+	int deg = 1;
+	long long res = 0;
+	while (xx > 0)
+	{
+		res = res * 10 + (xx % 10);
+		xx /= 10;
+	}
+	if (res > INT_MAX || res < INT_MIN)
+		return 0;
+	return res * (x > 0 ? 1 : -1);
+}
